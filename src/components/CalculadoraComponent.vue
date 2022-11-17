@@ -33,10 +33,6 @@
 
 <script>
 
-
-
-
-
 export default {
 
     name: 'CalculadoraComponente',
@@ -50,20 +46,14 @@ export default {
 
 
         return {
-            but1: 1,
-            but2: 2,
-            but3: 3,
-            but4: 4,
-            but5: 5,
-            but6: 6,
-            but7: 7,
-            but8: 8,
-            but9: 9,
-            but0: 0,
-            resultado: "",
-            operacion: "",
+
+
+            resultado: !"",
+            operacion: !"",
             operandoa: 0,
-            operandob: 0
+            operandob: 0,
+            comprueba: false,
+            res: 0
 
 
         }
@@ -73,154 +63,162 @@ export default {
 
     mounted() {
 
-
-        this.visualizalizacion();
-
-
-
+        this.resultado = document.getElementById("screen");
 
     },
 
     methods: {
 
-        visualizalizacion() {
-            this.but1 = document.getElementById("numb1");
-            this.but2 = document.getElementById("numb2");
-            this.but3 = document.getElementById("numb3");
-            this.but4 = document.getElementById("numb4")
-            this.but5 = document.getElementById("numb5")
-            this.but6 = document.getElementById("numb6");
-            this.but7 = document.getElementById("numb7");
-            this.but8 = document.getElementById("numb8");
-            this.but9 = document.getElementById("numb9");
-            this.but0 = document.getElementById("numb0");
-            this.butsuma = document.getElementById("operador+")
-            this.butresta = document.getElementById("operador-")
-            this.butdivision = document.getElementById("operador/")
-            this.butmultiplicacion = document.getElementById("operadorx")
-            this.butigual = document.getElementById("operador=")
-            this.resultado = document.getElementById("screen");
-
-        },
-
 
         pulsebut0() {
+
+
+
             this.resultado.textContent = this.resultado.textContent + "0";
+
         },
 
         pulsebut1() {
             this.resultado.textContent = this.resultado.textContent + "1";
+            
+
         },
 
         pulsebut2() {
+
             this.resultado.textContent = this.resultado.textContent + "2";
+
         },
 
         pulsebut3() {
+
             this.resultado.textContent = this.resultado.textContent + "3";
+
         },
 
-
         pulsebut4() {
+
             this.resultado.textContent = this.resultado.textContent + "4";
+
         },
 
         pulsebut5() {
+
             this.resultado.textContent = this.resultado.textContent + "5";
+
+
         },
 
 
         pulsebut6() {
+
             this.resultado.textContent = this.resultado.textContent + "6";
+
         },
 
         pulsebut7() {
+
             this.resultado.textContent = this.resultado.textContent + "7";
+
         },
 
         pulsebut8() {
+
             this.resultado.textContent = this.resultado.textContent + "8";
+
         },
 
         pulsebut9() {
+
             this.resultado.textContent = this.resultado.textContent + "9";
+
+
         },
 
 
         pulseButMas() {
-
-            this.operandoa = this.resultado.textContent;
-            this.resultado.textContent = "+"
-            this.resetear();
+            this.operandoa = this.resultado.textContent
             this.operacion = "+"
+            this.limpiar();
+
+
         },
 
         pulseButResta() {
-
             this.operandoa = this.resultado.textContent;
-            this.resultado.textContent = "-"
-            this.resetear();
             this.operacion = "-"
+            this.limpiar();
+
         },
 
 
         pulseButMult() {
             this.operandoa = this.resultado.textContent;
-            this.resetear();
             this.operacion = "*"
+            this.limpiar();
         },
 
 
         pulseButDiv() {
-
             this.operandoa = this.resultado.textContent;
-            this.resultado.textContent = "/"
-            this.resetear();
             this.operacion = "/"
+            this.limpiar();
         },
 
 
         pulseButIgual() {
+                this.operandob = this.resultado.textContent;
+                this.resuelve();
+               
+    
+        },
 
-            this.operandob = this.resultado.textContent;
-            this.operaciones()
 
+        limpiar() {
 
+            this.resultado.textContent = ""
         },
 
 
 
-
-        operaciones() {
-            let res = 0;
-            switch (this.operacion) {
-
-                case "+":
-                    res = parseFloat(this.operandoa) + parseFloat(this.operandob)
-                    break;
-
-                case "-":
-                    res = parseFloat(this.operandoa) - parseFloat(this.operandob)
-                    break;
-            
-                case "*":
-                    res = parseFloat(this.operandoa) * parseFloat(this.operandob)
-                    break;
-
-                case "/":
-                    res = parseFloat(this.operandoa) / parseFloat(this.operandob)
-                    break;
-
-
-            }
-            this.resultado.textContent = res;
-
-
-        },
         resetear() {
 
             this.resultado.textContent = "";
+            this.operandoa = 0;
+            this.operandob = 0;
+            this.operacion = "";
+        },
+
+
+        resuelve() {
+            this.res = 0;
+            switch (this.operacion) {
+                case "+":
+                    this.res = parseFloat(this.operandoa) + parseFloat(this.operandob);
+                    break;
+
+                case "-":
+                    this.res = parseFloat(this.operandoa) - parseFloat(this.operandob);
+                    break;
+
+                case "/":
+                    this.res = parseFloat(this.operandoa) / parseFloat(this.operandob);
+                    break;
+
+                case "*":
+                    this.res = parseFloat(this.operandoa) * parseFloat(this.operandob);
+                    break;
+
+            }
+            this.resetear();
+            this.resultado.textContent = this.res;
         }
+
+
+
+
+
+
 
 
 
