@@ -1,1 +1,1 @@
-![Scheme](img/calculadora.jpeg)
+![Scheme](src/assets/img/calculadora.jpeg)
